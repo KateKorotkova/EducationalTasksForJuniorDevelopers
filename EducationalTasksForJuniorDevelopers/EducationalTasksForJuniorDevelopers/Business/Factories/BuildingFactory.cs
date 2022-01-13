@@ -2,9 +2,9 @@
 
 namespace EducationalTasksForJuniorDevelopers.Business.Factories
 {
-	public class BuildingFactory : AFactory<Building>
+	public class BuildingFactory : IFactory<Building>
 	{
-		public override Building CreateDefaultObject()
+		public Building CreateDefaultObject()
 		{
 			return new Building
 			{

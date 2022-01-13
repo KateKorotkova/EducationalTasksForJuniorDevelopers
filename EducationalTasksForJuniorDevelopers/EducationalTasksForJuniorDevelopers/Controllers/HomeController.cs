@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using EducationalTasksForJuniorDevelopers.Business.Calculators;
 using EducationalTasksForJuniorDevelopers.Business.Entities;
+using EducationalTasksForJuniorDevelopers.Business.Factories;
 using EducationalTasksForJuniorDevelopers.Business.Helpers;
 
 namespace EducationalTasksForJuniorDevelopers.Controllers
@@ -23,6 +24,11 @@ namespace EducationalTasksForJuniorDevelopers.Controllers
 
 		public IActionResult Index()
 		{
+			var buildingFactory = new BuildingFactory();
+			var flatFactory = new FlatFactory();
+
+			FactoryManager(buildingFactory, flatFactory);
+
 			return View();
 		}
 
@@ -40,6 +46,16 @@ namespace EducationalTasksForJuniorDevelopers.Controllers
 
 		#region Support Methods
 
+		private void FactoryManager(params IFactory<MarketObject>[] factories)
+		{
+			var allObjects = new List<MarketObject>();
+
+			factories.ToList().ForEach(x =>
+			{
+				var obj = x.CreateDefaultObject();
+				allObjects.Add(obj);
+			});
+		}
 
 		#endregion
 	}

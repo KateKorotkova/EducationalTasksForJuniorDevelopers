@@ -2,9 +2,9 @@
 
 namespace EducationalTasksForJuniorDevelopers.Business.Factories
 {
-	public class FlatFactory : AFactory<Flat>
+	public class FlatFactory : IFactory<Flat>
 	{
-		public override Flat CreateDefaultObject()
+		public Flat CreateDefaultObject()
 		{
 			return new Flat
 			{
