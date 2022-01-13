@@ -7,6 +7,9 @@ namespace EducationalTasksForJuniorDevelopers.Business.Calculators
 		private decimal _upksCorrectionCoefficient;
 		public static int UpksCalculationCounter { get; set; }
 
+		public delegate void GreateCadastralCostHandlerForNotification();
+		public event GreateCadastralCostHandlerForNotification NotifyGreateCadastralCostHandler;
+
 
 		static Calculator()
 		{
@@ -21,11 +24,19 @@ namespace EducationalTasksForJuniorDevelopers.Business.Calculators
 
 		public abstract decimal CalculateCadastralCost(MarketObject marketObject);
 
-		protected virtual decimal CalculateUpks(MarketObject obj)
+
+		public virtual decimal CalculateUpks(MarketObject obj)
 		{
 			UpksCalculationCounter++;
 
-			return (obj.CadastralCost / obj.Square) * _upksCorrectionCoefficient;
+			var upks = (obj.CadastralCost / obj.Square) * _upksCorrectionCoefficient;
+
+			if (upks > 1000000)
+			{
+				NotifyGreateCadastralCostHandler?.Invoke();
+			}
+
+			return upks;
 		}
 	}
 }

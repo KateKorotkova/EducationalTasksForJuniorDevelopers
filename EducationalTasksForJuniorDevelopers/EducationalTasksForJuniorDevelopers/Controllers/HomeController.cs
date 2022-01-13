@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using EducationalTasksForJuniorDevelopers.Business.Calculators;
 using EducationalTasksForJuniorDevelopers.Business.Entities;
 using EducationalTasksForJuniorDevelopers.Business.Helpers;
 
@@ -22,11 +23,16 @@ namespace EducationalTasksForJuniorDevelopers.Controllers
 
 		public IActionResult Index()
 		{
+			var flatCalculator = new FlatCalculator(1);
+			flatCalculator.NotifyGreateCadastralCostHandler += () => Debug.WriteLine("Стоимость УПКС превысила 1 млн");
+			flatCalculator.CalculateUpks(new Flat {CadastralCost = 2000000, Square = 1});
+
 			return View();
 		}
 
 		public IActionResult Privacy()
 		{
+
 			return View();
 		}
 

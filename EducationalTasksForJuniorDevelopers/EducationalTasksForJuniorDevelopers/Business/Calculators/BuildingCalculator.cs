@@ -10,7 +10,7 @@ namespace EducationalTasksForJuniorDevelopers.Business.Calculators
 			return (marketObject as Building).Flats.Sum(x => x.CadastralCost);
 		}
 
-		protected override decimal CalculateUpks(MarketObject marketObject)
+		public override decimal CalculateUpks(MarketObject marketObject)
 		{
 			return (marketObject as Building).Flats.Sum(x => x.Upks);
 		}
