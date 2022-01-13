@@ -8,7 +8,7 @@ namespace EducationalTasksForJuniorDevelopers.Business.Calculators
 		private const decimal _upksCorrectionCoefficient = 0.9m;
 
 
-		public FlatCalculator(decimal cadastralCostCorrectionCoefficient)
+		public FlatCalculator(decimal cadastralCostCorrectionCoefficient) : base(_upksCorrectionCoefficient)
 		{
 			_cadastralCostCorrectionCoefficient = cadastralCostCorrectionCoefficient;
 		}
@@ -17,13 +17,6 @@ namespace EducationalTasksForJuniorDevelopers.Business.Calculators
 		public override decimal CalculateCadastralCost(MarketObject marketObject)
 		{
 			return marketObject.CadastralCost * _cadastralCostCorrectionCoefficient;
-		}
-
-		protected override decimal CalculateUpks(MarketObject obj)
-		{
-			var initialUpks = base.CalculateUpks(obj);
-
-			return initialUpks * _upksCorrectionCoefficient;
 		}
 	}
 }

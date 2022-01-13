@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using EducationalTasksForJuniorDevelopers.Business.Entities;
+using EducationalTasksForJuniorDevelopers.Business.Helpers;
 
 namespace EducationalTasksForJuniorDevelopers.Controllers
 {
@@ -21,6 +22,8 @@ namespace EducationalTasksForJuniorDevelopers.Controllers
 
 		public IActionResult Index()
 		{
+			var str = new MarketObject { CadastralNumber = "test_cadastral_number" }.MapCadastralNumber();
+
 			return View();
 		}
 
