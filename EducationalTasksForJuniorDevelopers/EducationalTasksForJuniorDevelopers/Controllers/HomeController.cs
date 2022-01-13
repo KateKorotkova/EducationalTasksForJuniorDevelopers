@@ -21,22 +21,6 @@ namespace EducationalTasksForJuniorDevelopers.Controllers
 
 		public IActionResult Index()
 		{
-			var a = CheckInputParameterType(new MarketObject());
-			var b = CheckInputParameterType(new Building());
-			var c = CheckInputParameterType(new Flat());
-
-			//ProcessFlat(new MarketObject());
-			//ProcessFlat(new Building());
-			//ProcessFlat(new Flat());
-
-			CastToBaseObject(new MarketObject());
-			CastToBaseObject(new Building());
-			CastToBaseObject(new Flat());
-
-			CastToFlat(new MarketObject());
-			CastToFlat(new Building());
-			CastToFlat(new Flat());
-
 			return View();
 		}
 
@@ -54,38 +38,7 @@ namespace EducationalTasksForJuniorDevelopers.Controllers
 
 		#region Support Methods
 
-		private string CheckInputParameterType(MarketObject marketObject)
-		{
-			var type = string.Empty;
 
-			if (marketObject is MarketObject)
-				type = nameof(MarketObject);
-
-			if (marketObject is Building)
-				type = nameof(Building);
-
-			if (marketObject is Flat)
-				type = nameof(Flat);
-
-			return $"Тип входного параметра - {type}";
-		}
-
-		private void ProcessFlat(Flat flat)
-		{
-
-		}
-
-		private void CastToBaseObject(object obj)
-		{
-			var a = obj as MarketObject;
-			var b = (MarketObject) obj;
-		}
-
-		private void CastToFlat(object obj)
-		{
-			var a = obj as Flat;
-			var b = (Flat) obj;
-		}
 
 		#endregion
 	}
