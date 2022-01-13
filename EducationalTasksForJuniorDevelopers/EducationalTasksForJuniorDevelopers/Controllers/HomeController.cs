@@ -23,16 +23,11 @@ namespace EducationalTasksForJuniorDevelopers.Controllers
 
 		public IActionResult Index()
 		{
-			var flatCalculator = new FlatCalculator(1);
-			flatCalculator.NotifyGreateCadastralCostHandler += () => Debug.WriteLine("Стоимость УПКС превысила 1 млн");
-			flatCalculator.CalculateUpks(new Flat {CadastralCost = 2000000, Square = 1});
-
 			return View();
 		}
 
 		public IActionResult Privacy()
 		{
-
 			return View();
 		}
 
@@ -45,14 +40,6 @@ namespace EducationalTasksForJuniorDevelopers.Controllers
 
 		#region Support Methods
 
-		private (long Id, decimal MaxCadastralCost) GetInfoAboutMarketObjectWithMaxCadastralCost(List<MarketObject> marketObjects)
-		{
-			var maxCadastralCost = marketObjects.Max(x => x.CadastralCost);
-
-			var marketObjectWithMaxCadastralCost = marketObjects.First(x => x.CadastralCost == maxCadastralCost);
-
-			return (marketObjectWithMaxCadastralCost.Id, marketObjectWithMaxCadastralCost.CadastralCost);
-		}
 
 		#endregion
 	}
