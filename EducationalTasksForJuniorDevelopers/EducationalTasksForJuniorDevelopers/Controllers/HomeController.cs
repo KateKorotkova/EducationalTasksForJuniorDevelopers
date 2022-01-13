@@ -29,6 +29,11 @@ namespace EducationalTasksForJuniorDevelopers.Controllers
 
 			FactoryManager(buildingFactory, flatFactory);
 
+			var tes1 = new FlatCadastralCostGetter();
+			var tes2 = new MarketObjectCadastralCostGetter();
+			GetCadastralCost(tes1);
+			GetCadastralCost(tes2);
+
 			return View();
 		}
 
@@ -55,6 +60,11 @@ namespace EducationalTasksForJuniorDevelopers.Controllers
 				var obj = x.CreateDefaultObject();
 				allObjects.Add(obj);
 			});
+		}
+
+		private void GetCadastralCost(ICadastralCostGetter<Flat> cadastralCostGetter)
+		{
+			var cn = cadastralCostGetter.GetCadastralCost(new Flat());
 		}
 
 		#endregion
