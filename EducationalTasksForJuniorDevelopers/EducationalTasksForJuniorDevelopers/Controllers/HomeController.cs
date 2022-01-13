@@ -22,7 +22,18 @@ namespace EducationalTasksForJuniorDevelopers.Controllers
 
 		public IActionResult Index()
 		{
-			var str = new MarketObject { CadastralNumber = "test_cadastral_number" }.MapCadastralNumber();
+			var firstPriceFactor = new PriceFactor();
+			PriceFactor secondPriceFactor;
+			ChangePriceFactorDistanceToStopVia(ref firstPriceFactor, out secondPriceFactor);
+			var a = firstPriceFactor;
+			var b = secondPriceFactor;
+
+
+			var firstMarketObject = new MarketObject();
+			MarketObject secondMarketObject;
+			ChangeMarketObjectCadastralNumber(ref firstMarketObject, out secondMarketObject);
+
+			var summaryCost = CalculateSummaryCadastralCost(new MarketObject{CadastralCost = 1}, new MarketObject{CadastralCost = 2});
 
 			return View();
 		}
@@ -41,6 +52,24 @@ namespace EducationalTasksForJuniorDevelopers.Controllers
 
 		#region Support Methods
 
+		private void ChangePriceFactorDistanceToStopVia(ref PriceFactor firstPriceFactor, out  PriceFactor secondPriceFactor)
+		{
+			firstPriceFactor.DistanceToStop = 100;
+
+			secondPriceFactor = new PriceFactor { DistanceToStop = 200 };
+		}
+
+		private void ChangeMarketObjectCadastralNumber(ref MarketObject firstMarketObject, out MarketObject secondMarketObject)
+		{
+			firstMarketObject.CadastralNumber = "1";
+
+			secondMarketObject = new MarketObject { CadastralNumber = "2" };
+		}
+
+		private decimal CalculateSummaryCadastralCost(params MarketObject[] marketObjects)
+		{
+			return marketObjects.Sum(x => x.CadastralCost);
+		}
 
 		#endregion
 	}

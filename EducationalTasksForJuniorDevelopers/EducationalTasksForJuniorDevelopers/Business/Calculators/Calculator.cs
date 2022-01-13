@@ -13,12 +13,7 @@ namespace EducationalTasksForJuniorDevelopers.Business.Calculators
 			UpksCalculationCounter = -1;
 		}
 
-		public Calculator()
-		{
-			_upksCorrectionCoefficient = 1;
-		}
-
-		public Calculator(decimal upksCorrectionCoefficient)
+		public Calculator(decimal upksCorrectionCoefficient = 1)
 		{
 			_upksCorrectionCoefficient = upksCorrectionCoefficient;
 		}
