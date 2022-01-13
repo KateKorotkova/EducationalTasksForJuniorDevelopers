@@ -24,16 +24,6 @@ namespace EducationalTasksForJuniorDevelopers.Controllers
 
 		public IActionResult Index()
 		{
-			var buildingFactory = new BuildingFactory();
-			var flatFactory = new FlatFactory();
-
-			FactoryManager(buildingFactory, flatFactory);
-
-			var tes1 = new FlatCadastralCostGetter();
-			var tes2 = new MarketObjectCadastralCostGetter();
-			GetCadastralCost(tes1);
-			GetCadastralCost(tes2);
-
 			return View();
 		}
 
@@ -51,21 +41,6 @@ namespace EducationalTasksForJuniorDevelopers.Controllers
 
 		#region Support Methods
 
-		private void FactoryManager(params IFactory<MarketObject>[] factories)
-		{
-			var allObjects = new List<MarketObject>();
-
-			factories.ToList().ForEach(x =>
-			{
-				var obj = x.CreateDefaultObject();
-				allObjects.Add(obj);
-			});
-		}
-
-		private void GetCadastralCost(ICadastralCostGetter<Flat> cadastralCostGetter)
-		{
-			var cn = cadastralCostGetter.GetCadastralCost(new Flat());
-		}
 
 		#endregion
 	}
