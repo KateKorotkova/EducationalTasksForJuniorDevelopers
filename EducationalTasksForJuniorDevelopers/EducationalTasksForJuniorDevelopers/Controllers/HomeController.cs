@@ -21,6 +21,28 @@ namespace EducationalTasksForJuniorDevelopers.Controllers
 
 		public IActionResult Index()
 		{
+			var firstMarketObject = new MarketObject { CadastralNumber = "1" };
+			var secondMarketObject = new MarketObject { CadastralNumber = "1" };
+			var thirdMarketObject = new MarketObject { CadastralNumber = "2" };
+
+			var a = firstMarketObject == secondMarketObject;
+			var b = firstMarketObject.Equals(secondMarketObject);
+			var c = ReferenceEquals(firstMarketObject, secondMarketObject);
+			var a1 = firstMarketObject == thirdMarketObject;
+			var b1 = firstMarketObject.Equals(thirdMarketObject);
+			var c1 = ReferenceEquals(firstMarketObject, thirdMarketObject);
+
+			var firstPriceFactor = new PriceFactor { MarketObjectId = 1 };
+			var secondPriceFactor = new PriceFactor { MarketObjectId = 1 };
+			var thirdPriceFactor = new PriceFactor { MarketObjectId = 2 };
+
+			//var e = firstPriceFactor == secondPriceFactor;
+			var f = firstMarketObject.Equals(secondPriceFactor);
+			var g = ReferenceEquals(firstPriceFactor, secondPriceFactor);
+			//var e1 = firstPriceFactor == thirdPriceFactor;
+			var f1 = firstPriceFactor.Equals(thirdPriceFactor);
+			var g1 = ReferenceEquals(firstPriceFactor, thirdPriceFactor);
+
 			return View();
 		}
 
