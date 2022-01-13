@@ -39,6 +39,14 @@ namespace EducationalTasksForJuniorDevelopers.Controllers
 
 		#region Support Methods
 
+		private (long Id, decimal MaxCadastralCost) GetInfoAboutMarketObjectWithMaxCadastralCost(List<MarketObject> marketObjects)
+		{
+			var maxCadastralCost = marketObjects.Max(x => x.CadastralCost);
+
+			var marketObjectWithMaxCadastralCost = marketObjects.First(x => x.CadastralCost == maxCadastralCost);
+
+			return (marketObjectWithMaxCadastralCost.Id, marketObjectWithMaxCadastralCost.CadastralCost);
+		}
 
 		#endregion
 	}
