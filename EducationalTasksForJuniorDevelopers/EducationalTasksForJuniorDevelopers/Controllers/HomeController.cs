@@ -36,12 +36,22 @@ namespace EducationalTasksForJuniorDevelopers.Controllers
 			var secondPriceFactor = new PriceFactor { MarketObjectId = 1 };
 			var thirdPriceFactor = new PriceFactor { MarketObjectId = 2 };
 
-			//var e = firstPriceFactor == secondPriceFactor;
-			var f = firstMarketObject.Equals(secondPriceFactor);
+			var e = firstPriceFactor == secondPriceFactor;
+			var f = firstPriceFactor.Equals(secondPriceFactor);
 			var g = ReferenceEquals(firstPriceFactor, secondPriceFactor);
-			//var e1 = firstPriceFactor == thirdPriceFactor;
+			var e1 = firstPriceFactor == thirdPriceFactor;
 			var f1 = firstPriceFactor.Equals(thirdPriceFactor);
 			var g1 = ReferenceEquals(firstPriceFactor, thirdPriceFactor);
+
+
+			ChangePriceFactorDistanceToStop(new PriceFactor());
+
+			ChangeMarketObjectSquare(new MarketObject());
+
+			var type1 = CheckType(new MarketObject());
+			var type2 = CheckType(new PriceFactor());
+			var type3 = CheckType(1);
+			var type4 = CheckType(new DateTime());
 
 			return View();
 		}
@@ -60,7 +70,29 @@ namespace EducationalTasksForJuniorDevelopers.Controllers
 
 		#region Support Methods
 
+		private void ChangePriceFactorDistanceToStop(PriceFactor priceFactor)
+		{
+			priceFactor.DistanceToStop = 100;
+		}
 
+		private void ChangeMarketObjectSquare(MarketObject marketObject)
+		{
+			marketObject.Square = 100;
+		}
+
+		private string CheckType(object obj)
+		{
+			if (obj is MarketObject)
+				return "ОН";
+
+			if (obj is PriceFactor)
+				return "Ценообразующий фактор";
+
+			if (obj is int)
+				return "Целочисленный тип";
+
+			return "Неизвестный тип";
+		}
 
 		#endregion
 	}
