@@ -7,7 +7,7 @@ namespace EducationalTasksForJuniorDevelopers.Business.Factories
 		decimal GetCadastralCost(T obj);
 	}
 
-	public class Test1 : ICadastralCostGetter<Flat>
+	public class FlatCadastralCostGetter : ICadastralCostGetter<Flat>
 	{
 		public decimal GetCadastralCost(Flat obj)
 		{
@@ -15,7 +15,7 @@ namespace EducationalTasksForJuniorDevelopers.Business.Factories
 		}
 	}
 
-	public class Test2 : ICadastralCostGetter<MarketObject>
+	public class MarketObjectCadastralCostGetter : ICadastralCostGetter<MarketObject>
 	{
 		public decimal GetCadastralCost(MarketObject obj)
 		{
