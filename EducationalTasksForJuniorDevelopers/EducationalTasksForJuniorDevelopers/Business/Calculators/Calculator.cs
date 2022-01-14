@@ -65,6 +65,26 @@ namespace EducationalTasksForJuniorDevelopers.Business.Calculators
 			Debug.WriteLine(marketObject.Type);
 		}
 
+		public int? Subtraction(int numberFrom, int? amount)
+		{
+			return numberFrom - amount;
+		}
+
+		public int? Subtraction(int? numberFrom, int amount)
+		{
+			return numberFrom - amount;
+		}
+
+		public bool Compare(int first, int? second)
+		{
+			return first > second;
+		}
+
+		public bool Compare(int? first, int second)
+		{
+			return first > second;
+		}
+
 		#endregion
 	}
 }
