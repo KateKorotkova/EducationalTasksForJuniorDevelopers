@@ -25,6 +25,9 @@ namespace EducationalTasksForJuniorDevelopers.Controllers
 
 		public IActionResult Index()
 		{
+			var array = CreateJaggedArray(2, 5);
+			PrintJaggedArray(array);
+
 			return View();
 		}
 
@@ -42,7 +45,32 @@ namespace EducationalTasksForJuniorDevelopers.Controllers
 
 		#region Support Methods
 
-	
+		private Flat[][] CreateJaggedArray(int n, int m)
+		{
+			var flats = new Flat[n][];
+
+			for (var i = 0; i < flats.Length; i++)
+			{
+				flats[i] = new Flat[m];
+				for (var j = 0; j < m; j++)
+				{
+					flats[i][j] = new Flat {CadastralNumber = i.ToString()};
+				}
+			}
+
+			return flats;
+		}
+
+		private void PrintJaggedArray(Flat[][] flats)
+		{
+			for (var i = 0; i < flats.Length; i++)
+			{
+				for (var j = 0; j < flats[i].Length; j++)
+				{
+					Debug.Write($"{flats[i][j].CadastralNumber}, ");
+				}
+			}
+		}
 
 		#endregion
 	}
