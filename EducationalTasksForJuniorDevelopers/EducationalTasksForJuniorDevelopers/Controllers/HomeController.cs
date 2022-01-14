@@ -7,6 +7,8 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using EducationalTasksForJuniorDevelopers.Attributes;
@@ -29,6 +31,14 @@ namespace EducationalTasksForJuniorDevelopers.Controllers
 		[UserRightsChecker(Tag = "Admin")]
 		public IActionResult Index()
 		{
+			var binaryFormatter = new BinaryFormatter();
+			var memoryStream = new MemoryStream();
+
+			var sp = new SquarePower(20);
+			binaryFormatter.Serialize(memoryStream, sp);
+			memoryStream.Position = 0;
+			sp = binaryFormatter.Deserialize(memoryStream) as SquarePower;
+
 			return View();
 		}
 
@@ -49,5 +59,32 @@ namespace EducationalTasksForJuniorDevelopers.Controllers
 
 
 		#endregion
+
+		[Serializable]
+		class SquarePower : ISerializable
+		{
+			public int Number;
+
+			[NonSerialized]
+			public  int Square;
+
+			public SquarePower(int number)
+			{
+				Number = number;
+				Square = Number * Number;
+			}
+
+			public void GetObjectData(SerializationInfo info, StreamingContext context)
+			{
+				info.AddValue(nameof(Number), Number);
+			}
+
+			public SquarePower(SerializationInfo info, StreamingContext context)
+			{
+				Number = (int)info.GetValue(nameof(Number), typeof(int));
+
+				Square = Number * Number;
+			}
+		}
 	}
 }
