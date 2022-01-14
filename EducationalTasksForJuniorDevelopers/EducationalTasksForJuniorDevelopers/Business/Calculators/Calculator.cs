@@ -1,4 +1,6 @@
-﻿using EducationalTasksForJuniorDevelopers.Business.Entities;
+﻿using System;
+using System.Diagnostics;
+using EducationalTasksForJuniorDevelopers.Business.Entities;
 
 namespace EducationalTasksForJuniorDevelopers.Business.Calculators
 {
@@ -10,6 +12,10 @@ namespace EducationalTasksForJuniorDevelopers.Business.Calculators
 		public delegate void GreateCadastralCostHandlerForNotification();
 		public event GreateCadastralCostHandlerForNotification NotifyGreateCadastralCostHandler;
 
+		private delegate void GreateCadastralCostDelegate(MarketObject marketObject);
+		private GreateCadastralCostDelegate _chain;
+		private Action<MarketObject> _builtInDelegate;
+
 
 		static Calculator()
 		{
@@ -19,6 +25,11 @@ namespace EducationalTasksForJuniorDevelopers.Business.Calculators
 		public Calculator(decimal upksCorrectionCoefficient = 1)
 		{
 			_upksCorrectionCoefficient = upksCorrectionCoefficient;
+			_chain += PrintCadatralNumber;
+			_chain += PrintType;
+
+			_builtInDelegate += PrintCadatralNumber;
+			_builtInDelegate += PrintType;
 		}
 
 
@@ -34,9 +45,26 @@ namespace EducationalTasksForJuniorDevelopers.Business.Calculators
 			if (upks > 1000000)
 			{
 				NotifyGreateCadastralCostHandler?.Invoke();
+				_chain(obj);
+				_builtInDelegate(obj);
 			}
 
 			return upks;
 		}
+
+
+		#region Support methods
+
+		private void PrintCadatralNumber(MarketObject marketObject)
+		{
+			Debug.WriteLine(marketObject.CadastralNumber);
+		}
+
+		private void PrintType(MarketObject marketObject)
+		{
+			Debug.WriteLine(marketObject.Type);
+		}
+
+		#endregion
 	}
 }

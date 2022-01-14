@@ -25,6 +25,9 @@ namespace EducationalTasksForJuniorDevelopers.Controllers
 
 		public IActionResult Index()
 		{
+			var calculator = new FlatCalculator(1);
+			var upks = calculator.CalculateUpks(new Flat {CadastralNumber = "test", CadastralCost = 2000000, Square = 1});
+
 			return View();
 		}
 

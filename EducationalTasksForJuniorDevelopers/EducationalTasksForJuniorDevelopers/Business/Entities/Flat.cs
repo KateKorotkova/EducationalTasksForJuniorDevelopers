@@ -2,6 +2,9 @@
 {
 	public class Flat : MarketObject
 	{
-
+		public Flat()
+		{
+			Type = Type.Flat;
+		}
 	}
 }
