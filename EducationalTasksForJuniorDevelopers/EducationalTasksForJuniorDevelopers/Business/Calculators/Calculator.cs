@@ -5,7 +5,7 @@ using EducationalTasksForJuniorDevelopers.Business.Entities;
 
 namespace EducationalTasksForJuniorDevelopers.Business.Calculators
 {
-	public abstract class Calculator
+	public abstract class Calculator : IDisposable
 	{
 		private decimal _upksCorrectionCoefficient;
 		public static int UpksCalculationCounter { get; set; }
@@ -51,6 +51,11 @@ namespace EducationalTasksForJuniorDevelopers.Business.Calculators
 			}
 
 			return upks;
+		}
+
+		public void Dispose()
+		{
+
 		}
 
 
