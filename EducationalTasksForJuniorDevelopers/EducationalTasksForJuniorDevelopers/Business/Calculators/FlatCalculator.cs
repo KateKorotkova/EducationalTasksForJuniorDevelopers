@@ -6,7 +6,13 @@ namespace EducationalTasksForJuniorDevelopers.Business.Calculators
 	{
 		private readonly decimal _cadastralCostCorrectionCoefficient;
 		private const decimal _upksCorrectionCoefficient = 0.9m;
+		public string TestReflection { get; set; }
 
+
+		public FlatCalculator()
+		{
+			TestReflection = "a";
+		}
 
 		public FlatCalculator(decimal cadastralCostCorrectionCoefficient) : base(_upksCorrectionCoefficient)
 		{
