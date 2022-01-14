@@ -29,16 +29,6 @@ namespace EducationalTasksForJuniorDevelopers.Controllers
 		[UserRightsChecker(Tag = "Admin")]
 		public IActionResult Index()
 		{
-			using (var sr = new StreamReader("C:\\Users\\korotkova\\Desktop\\EducationalNew\\EducationalTasksForJuniorDevelopers\\EducationalTasksForJuniorDevelopers\\EducationalTasksForJuniorDevelopers\\wwwroot\\resources\\test.txt"))
-			{
-				Console.WriteLine(sr.ReadToEnd());
-			}
-
-			using (var calculator = new BuildingCalculator())
-			{
-
-			}
-
 			return View();
 		}
 
