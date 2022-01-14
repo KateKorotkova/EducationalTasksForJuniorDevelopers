@@ -28,16 +28,6 @@ namespace EducationalTasksForJuniorDevelopers.Controllers
 		[UserRightsChecker(Tag = "Admin")]
 		public IActionResult Index()
 		{
-			var list = new List<MarketObject> {new MarketObject(), new Building(), new Flat()};
-			list.ForEach(x =>
-			{
-				var type = x.GetType();
-				var attribute = type.GetCustomAttribute<CustomAttribute>();
-				if (attribute != null)
-				{
-					Debug.WriteLine($"У типа {type} есть кастомный атрибут");
-				}
-			});
 			return View();
 		}
 
