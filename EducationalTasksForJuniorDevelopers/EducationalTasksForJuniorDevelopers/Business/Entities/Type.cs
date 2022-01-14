@@ -2,8 +2,8 @@
 {
 	public enum Type
 	{
-		Building,
-		Flat,
-		Parcel
+		Building = 2,
+		Flat = 1,
+		Parcel = 5
 	}
 }
