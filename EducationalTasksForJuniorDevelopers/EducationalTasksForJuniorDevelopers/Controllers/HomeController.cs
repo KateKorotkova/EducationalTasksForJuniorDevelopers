@@ -28,13 +28,6 @@ namespace EducationalTasksForJuniorDevelopers.Controllers
 		[UserRightsChecker(Tag = "Admin")]
 		public IActionResult Index()
 		{
-			var buildingCalculator = new BuildingCalculator();
-			var a = buildingCalculator.Subtraction(10, null);
-			var b = buildingCalculator.Subtraction(null, 10);
-
-			var c = buildingCalculator.Compare(10, null);
-			var d = buildingCalculator.Compare(null, 10);
-
 			return View();
 		}
 
