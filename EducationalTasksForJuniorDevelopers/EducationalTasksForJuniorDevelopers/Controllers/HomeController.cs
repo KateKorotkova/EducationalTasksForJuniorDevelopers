@@ -29,20 +29,6 @@ namespace EducationalTasksForJuniorDevelopers.Controllers
 		[UserRightsChecker(Tag = "Admin")]
 		public IActionResult Index()
 		{
-			var flatCalculator = new FlatCalculator();
-
-			var type1 = flatCalculator.GetType();
-			var type2 = typeof(FlatCalculator);
-
-			var objViaEmptyConstructor = (FlatCalculator)Activator.CreateInstance(typeof(FlatCalculator));
-			var objViaConstructorWithParameter = (FlatCalculator)Activator.CreateInstance(typeof(FlatCalculator), 1m);
-
-			var methodInfo = typeof(FlatCalculator).GetMethod(nameof(FlatCalculator.CalculateCadastralCost));
-			var cadastralCost = methodInfo.Invoke(flatCalculator, new[] {new MarketObject { CadastralCost = 100 }});
-
-			var prop = flatCalculator.GetType().GetProperty(nameof(FlatCalculator.TestReflection));
-			prop.SetValue(flatCalculator, "b", null);
-
 			return View();
 		}
 
