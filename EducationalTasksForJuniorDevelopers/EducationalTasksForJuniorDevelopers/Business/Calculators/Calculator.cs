@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using EducationalTasksForJuniorDevelopers.Business.Calculators.Exceptions;
 using EducationalTasksForJuniorDevelopers.Business.Entities;
 
 namespace EducationalTasksForJuniorDevelopers.Business.Calculators
@@ -83,6 +84,29 @@ namespace EducationalTasksForJuniorDevelopers.Business.Calculators
 		public bool Compare(int? first, int second)
 		{
 			return first > second;
+		}
+
+		public decimal? Divide(decimal firstNumber, decimal secondNumber)
+		{
+			try
+			{
+				if (secondNumber == 0)
+					throw new ZeroInputParameterException();
+
+				var result = firstNumber / secondNumber;
+
+				return result;
+			}
+			catch (OverflowException e)
+			{
+				Debug.WriteLine("В ходе расчетов получилось слишком большое или слишком маленькое число");
+				return null;
+			}
+			catch (ZeroInputParameterException e)
+			{
+				Debug.WriteLine("Делитель не может быть равным нулю");
+				return null;
+			}
 		}
 
 		#endregion
